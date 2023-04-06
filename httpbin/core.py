@@ -15,6 +15,8 @@ import time
 import uuid
 import argparse
 
+from importlib.metadata import metadata
+
 from flask import (
     Flask,
     Response,
@@ -68,6 +70,9 @@ ENV_COOKIES = (
     "__utmb",
 )
 
+
+def homepage_url():
+    return metadata("httpbin")["Home-page"]
 
 def jsonify(*args, **kwargs):
     response = flask_jsonify(*args, **kwargs)
@@ -156,6 +161,7 @@ swagger_config = {
     # "static_folder": "static",  # must be set by user
     "swagger_ui": True,
     "specs_route": "/",
+    "homepage_url": homepage_url(),
 }
 
 swagger = Swagger(app, sanitizer=NO_SANITIZER, template=template, config=swagger_config)
@@ -240,7 +246,7 @@ def set_cors_headers(response):
 @app.route("/legacy")
 def view_landing_page():
     """Generates Landing Page in legacy layout."""
-    return render_template("index.html")
+    return render_template("index.html", homepage_url=homepage_url())
 
 
 @app.route("/html")
