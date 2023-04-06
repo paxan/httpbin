@@ -98,18 +98,11 @@ app.config["SWAGGER"] = {"title": "httpbin.org", "uiversion": 3}
 template = {
     "swagger": "2.0",
     "info": {
-        "title": "httpbin.org",
+        "title": "httpbin",
         "description": (
             "A simple HTTP Request & Response Service."
-            "<br/> <br/> <b>Run locally: </b> <code>$ docker run -p 80:80 kennethreitz/httpbin</code>"
+            "<br/> <br/> <b>Run locally: </b> <code>$ docker build . -t httpbin && docker run -p 80:80 httpbin</code>"
         ),
-        "contact": {
-            "responsibleOrganization": "Kenneth Reitz",
-            "responsibleDeveloper": "Kenneth Reitz",
-            "email": "me@kennethreitz.org",
-            "url": "https://kennethreitz.org",
-        },
-        # "termsOfService": "http://me.com/terms",
         "version": version,
     },
     "host": "httpbin.org",  # overrides localhost:5000
